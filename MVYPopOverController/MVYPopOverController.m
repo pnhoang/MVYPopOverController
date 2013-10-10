@@ -103,6 +103,8 @@
 	[self didMoveToParentViewController:viewController];
 	self.popOverFrame = frame;
 	
+	[self presentAnimationWillBegin];
+	
 	switch (animation) {
 		case MVYPresentPopOverAnimationSlideInFromBottom:
 			[self presentSlideInFromBottom];
@@ -135,6 +137,8 @@
 }
 
 - (void)dismissPopOverWithAnimation:(MVYDismissPopOverAnimation)animation {
+	
+	[self dismissAnimitationWillBegin];
 	
 	switch (animation) {
 		case MVYDismissPopOverAnimationSlideOutToBottom:
@@ -180,12 +184,35 @@
 	[self removeOpacity];
 }
 
+- (void)presentAnimationWillBegin {
+	if (self.onWillAppear) {
+		self.onWillAppear();
+	}
+}
+
+- (void)presentAnimationCompleted {
+	[self.rootViewController didMoveToParentViewController:self];
+	if (self.onDidAppear) {
+		self.onDidAppear();
+	}
+}
+
+- (void)dismissAnimitationWillBegin {
+	if (self.onWillDisappear) {
+		self.onWillDisappear();
+	}
+}
+
 - (void)dismissAnimationCompleted {
 	
 	[self.rootViewController.view removeFromSuperview];
 	[self.rootViewController removeFromParentViewController];
 	[self.view removeFromSuperview];
 	[self removeFromParentViewController];
+	
+	if (self.onDidDisappear) {
+		self.onDidDisappear();
+	}
 }
 
 - (void)setPopOverHidden:(BOOL)hidden {
@@ -205,7 +232,7 @@
 		[self presentAnimationBegan];
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 
@@ -219,7 +246,7 @@
 		[self presentAnimationBegan];
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 
@@ -233,7 +260,7 @@
 		[self presentAnimationBegan];
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 
@@ -247,7 +274,7 @@
 		[self presentAnimationBegan];
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 
@@ -261,7 +288,7 @@
 		self.rootViewController.view.alpha = 1.0;
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 
@@ -279,7 +306,7 @@
 		[self presentAnimationBegan];
 		self.rootViewController.view.frame = self.popOverFrame;
 	} completion:^(BOOL finished) {
-		[self.rootViewController didMoveToParentViewController:self];
+		[self presentAnimationCompleted];
 	}];
 }
 

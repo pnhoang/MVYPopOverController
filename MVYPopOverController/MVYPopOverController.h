@@ -31,8 +31,10 @@ typedef NS_ENUM(NSInteger, MVYDismissPopOverAnimation) {
 @property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic) BOOL dismissOnTapOut;
 @property (nonatomic) MVYDismissPopOverAnimation dismissAnimation;
-@property (nonatomic, copy) void (^onPresented)(void);
-@property (nonatomic, copy) void (^onDismissed)(void);
+@property (nonatomic, copy) void (^onDidAppear)(void);
+@property (nonatomic, copy) void (^onWillAppear)(void);
+@property (nonatomic, copy) void (^onDidDisappear)(void);
+@property (nonatomic, copy) void (^onWillDisappear)(void);
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController;
 
