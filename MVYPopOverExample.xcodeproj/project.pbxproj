@@ -61,6 +61,7 @@
 		38590A291805838700B6AF43 /* MVYMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVYMenuViewController.m; sourceTree = "<group>"; };
 		38590A2A1805838700B6AF43 /* MVYMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MVYMenuViewController.xib; sourceTree = "<group>"; };
 		38590A2D180599EE00B6AF43 /* MVYViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MVYViewController.xib; sourceTree = "<group>"; };
+		38D19161184F429200A8BBAE /* MVYPopOverController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MVYPopOverController.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +139,7 @@
 		385909ED180577B200B6AF43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				38D19161184F429200A8BBAE /* MVYPopOverController.podspec */,
 				385909EE180577B200B6AF43 /* MVYPopOverExample-Info.plist */,
 				385909EF180577B200B6AF43 /* InfoPlist.strings */,
 				385909F2180577B200B6AF43 /* main.m */,

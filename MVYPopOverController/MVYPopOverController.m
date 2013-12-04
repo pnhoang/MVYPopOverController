@@ -195,6 +195,9 @@
 	if (self.onDidAppear) {
 		self.onDidAppear();
 	}
+	
+	[self.rootViewController.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+
 }
 
 - (void)dismissAnimitationWillBegin {
@@ -218,6 +221,15 @@
 - (void)setPopOverHidden:(BOOL)hidden {
 	
 	[self.rootViewController.view setHidden:hidden];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	
+	if ([keyPath isEqual:@"frame"]) {
+		CGSize size = self.rootViewController.view.frame.size;
+		self.popOverFrame = CGRectMake(self.popOverFrame.origin.x, self.popOverFrame.origin.x, size.width, size.height);
+	}
+	
 }
 
 #pragma mark – Present Animations
