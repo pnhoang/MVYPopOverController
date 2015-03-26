@@ -213,6 +213,8 @@
 	[self.view removeFromSuperview];
 	[self removeFromParentViewController];
 	
+	[self.rootViewController.view removeObserver:self forKeyPath:@"frame"];
+	
 	if (self.onDidDisappear) {
 		self.onDidDisappear();
 	}
