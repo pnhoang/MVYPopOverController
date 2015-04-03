@@ -61,12 +61,6 @@
 	[self addGestures];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)setRootViewController:(UIViewController *)rootViewController {
 	
 	_rootViewController = rootViewController;
@@ -81,6 +75,8 @@
 	if (self.rootViewController) {
 		[self addChildViewController:self.rootViewController];
 		self.rootViewController.view.frame = self.view.bounds;
+		self.rootViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		
 		[self.view addSubview:self.rootViewController.view];
 		[self.rootViewController didMoveToParentViewController:self];
 	}
@@ -94,6 +90,7 @@
 		[self.view addGestureRecognizer:_tapGesture];
     }
 }
+
 
 - (void)presentPopOverInViewController:(UIViewController *)viewController atFrame:(CGRect)frame withAnimation:(MVYPresentPopOverAnimation)animation {
 	
@@ -196,7 +193,7 @@
 		self.onDidAppear();
 	}
 	
-	[self.rootViewController.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+//	[self.rootViewController.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
 
 }
 
@@ -213,7 +210,7 @@
 	[self.view removeFromSuperview];
 	[self removeFromParentViewController];
 	
-	[self.rootViewController.view removeObserver:self forKeyPath:@"frame"];
+//	[self.rootViewController.view removeObserver:self forKeyPath:@"frame"];
 	
 	if (self.onDidDisappear) {
 		self.onDidDisappear();
@@ -225,14 +222,14 @@
 	[self.rootViewController.view setHidden:hidden];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	
-	if ([keyPath isEqual:@"frame"]) {
-		CGSize size = self.rootViewController.view.frame.size;
-		self.popOverFrame = CGRectMake(self.popOverFrame.origin.x, self.popOverFrame.origin.x, size.width, size.height);
-	}
-	
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//	
+//	if ([keyPath isEqual:@"frame"]) {
+//		CGSize size = self.rootViewController.view.frame.size;
+//		self.popOverFrame = CGRectMake(self.popOverFrame.origin.x, self.popOverFrame.origin.y, size.width, size.height);
+//	}
+//	
+//}
 
 #pragma mark – Present Animations
 
@@ -323,6 +320,7 @@
 		[self presentAnimationCompleted];
 	}];
 }
+
 
 #pragma mark – Dismiss Animations
 
