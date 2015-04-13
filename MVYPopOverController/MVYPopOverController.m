@@ -75,6 +75,13 @@
 	if (self.rootViewController) {
 		[self addChildViewController:self.rootViewController];
 		self.rootViewController.view.frame = self.view.bounds;
+		self.rootViewController.view.layer.cornerRadius = 10;
+		self.rootViewController.view.layer.borderColor = [UIColor grayColor].CGColor;
+		self.rootViewController.view.layer.borderWidth = 1;
+		self.rootViewController.view.layer.shadowOffset = CGSizeMake(10, 10);
+		self.rootViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+		self.rootViewController.view.layer.shadowOpacity = 0.3;
+
 		self.rootViewController.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		
 		[self.view addSubview:self.rootViewController.view];
